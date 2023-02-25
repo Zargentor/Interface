@@ -7,7 +7,6 @@ from corr import *
 dict = []  # массив для записи отдельных предложений
 directory = ""
 word = ""
-dirr = []
 def corr():
     global dirr
     global dict

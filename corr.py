@@ -4,6 +4,7 @@ import billing
 from billing import *
 import os
 from billing import interface
+from billing import perebor_corr
 
 dirpath = ""
 textpool = ""
@@ -17,7 +18,7 @@ root.geometry('800x600')
 # Делаем невозможным менять размеры окна
 root.resizable(width=False, height=False)
 
-
+couttext = ""
 def ButtonOne():
     global dirpath
     global textpool
@@ -36,14 +37,15 @@ def ButtonOne():
 
     btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo(textpool,dirpath))
     btn_two.place(width=100, height=25, y=50)
-    # ButtonTwo(textpool, dirpath)
+    ButtonTwo(textpool, dirpath)
 
 def ButtonTwo(textpool, dirpath) -> str:
-    textpool = str(textpool)
+    global couttext
+    textpool = str(textpool)#вот сюда переходит не строка, исправить
     if textpool != None:
         interface(textpool,dirpath)
-    cout = Label(textworkgroup, text=perebor_corr(), anchor='w')
-    cout.place(width=500,y=85)
+    couttext = perebor_corr
+
 
 
 textworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
@@ -55,4 +57,6 @@ buttonworkgroup.place(width=200, height=120, x=525, y=15)
 btn_one = Button(buttonworkgroup, command=ButtonOne, text="Выберите \n директорию \n поиска")
 btn_one.place(width=100, height=45)
 
+cout = Label(textworkgroup, text=couttext, anchor='w')
+cout.place(width=500,y=85)
 root.mainloop()
