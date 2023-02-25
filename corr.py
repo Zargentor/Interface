@@ -21,7 +21,7 @@ def ButtonOne():
         parent=textworkgroup,
         title='Выберите директорию поиска'
     )
-    label = Label(textworkgroup, text=dirpath, anchor='w')
+    label = Label(textworkgroup, text="Выбранная директория: " + dirpath, anchor='w')
     label.place(width=500, height=25)
 
 
@@ -31,10 +31,12 @@ textworkgroup.place(width=500, height=400, x=15, y=15)
 buttonworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
 buttonworkgroup.place(width=100, height=60, x=525, y=15)
 
+# phrasefordirectory = Label(textworkgroup, text="Выберите директорию поиска", anchor='w')
+# phrasefordirectory.place(width=500, height=20)
 
-
-btn_one = Button(buttonworkgroup, command=ButtonOne)
+btn_one = Button(buttonworkgroup, command=ButtonOne,text="Выберите директорию поиска")
 btn_one.place(width=100, height=25)
+
 btn_two = Button(buttonworkgroup)
 btn_two.place(width=100, height=25, y=30)
 
