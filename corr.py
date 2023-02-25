@@ -1,9 +1,9 @@
 from tkinter import *
 from tkinter import filedialog
-import main
-from main import *
+import billing
+from billing import *
 import os
-from main import interface
+from billing import interface
 
 dirpath = ""
 textpool = ""
