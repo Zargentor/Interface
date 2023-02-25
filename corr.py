@@ -31,17 +31,19 @@ def ButtonOne():
     phraseforword = Label(textworkgroup, text="Введите слово для поиска", anchor='w', )
     phraseforword.place(width=500, height=20, y=25)
 
-    textpool = Entry(textworkgroup)
+    textpool = Text(textworkgroup)
     textpool.place(width=500, height=50, y=45)
 
-    btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo)
+    btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo(textpool,dirpath))
     btn_two.place(width=100, height=25, y=50)
-    ButtonTwo(textpool, dirpath)
+    # ButtonTwo(textpool, dirpath)
 
-def ButtonTwo(textpool, dirpath):
-    interface(textpool, dirpath)
+def ButtonTwo(textpool, dirpath) -> str:
+    textpool = str(textpool)
+    if textpool != None:
+        interface(textpool,dirpath)
     cout = Label(textworkgroup, text=perebor_corr(), anchor='w')
-    cout.place(y=60)
+    cout.place(width=500,y=85)
 
 
 textworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')

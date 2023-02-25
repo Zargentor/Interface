@@ -36,11 +36,9 @@ def perebor_corr():
 
 
 
-def interface():
+def interface(textpool,dirpath):
     global word
     global directory
-    global dirpath
-    global textpool
     word = textpool
     directory = dirpath
     corr()
