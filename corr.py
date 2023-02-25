@@ -31,8 +31,8 @@ textworkgroup.place(width=500, height=400, x=15, y=15)
 buttonworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
 buttonworkgroup.place(width=100, height=60, x=525, y=15)
 
-# phrasefordirectory = Label(textworkgroup, text="Выберите директорию поиска", anchor='w')
-# phrasefordirectory.place(width=500, height=20)
+phrasefordirectory = Label(textworkgroup, text="Выберите директорию поиска", anchor='w')
+phrasefordirectory.place(width=500, height=20)
 
 btn_one = Button(buttonworkgroup, command=ButtonOne,text="Выберите директорию поиска")
 btn_one.place(width=100, height=25)
