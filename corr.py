@@ -24,6 +24,7 @@ def ButtonOne():
     label = Label(textworkgroup, text=dirpath, anchor='w')
     label.place(width=500, height=25)
 
+
 textworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
 textworkgroup.place(width=500, height=400, x=15, y=15)
 
