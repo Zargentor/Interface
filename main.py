@@ -2,7 +2,7 @@ import os
 
 from os.path import basename
 import re
-from corr import dirpath,textpool
+from corr import *
 
 dict = []  # массив для записи отдельных предложений
 directory = ""
@@ -30,7 +30,6 @@ def perebor_corr():
         sentences = filter(lambda t: t, [t.strip() for t in split_regex.split(word_text)])
         for i in sentences:
             if word in i:
-
                 print(filename[0], ":",i)
                 print("Количество символов до слова",word,"=",word_text.index(word))
                 print("Количество символов после слова",word,"=", len_all - word_text.index(word) - len_curr)

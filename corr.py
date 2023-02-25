@@ -3,7 +3,7 @@ from tkinter import filedialog
 import main
 from main import *
 import os
-
+from main import interface
 
 dirpath = ""
 textpool = ""
@@ -16,6 +16,7 @@ root.title('Поиск по слову')
 root.geometry('800x600')
 # Делаем невозможным менять размеры окна
 root.resizable(width=False, height=False)
+
 
 def ButtonOne():
     global dirpath
@@ -33,20 +34,23 @@ def ButtonOne():
     textpool = Entry(textworkgroup)
     textpool.place(width=500, height=50, y=45)
 
-    btn_two = Button(buttonworkgroup, text="Начать поиск")
+    btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo)
     btn_two.place(width=100, height=25, y=50)
-    ButtonTwo(textpool)
-def ButtonTwo(textpool):
-    main.interface(dirpath,textpool)
-    cout = Label(textworkgroup)
+    ButtonTwo(textpool, dirpath)
+
+def ButtonTwo(textpool, dirpath):
+    interface(textpool, dirpath)
+    cout = Label(textworkgroup, text=perebor_corr(), anchor='w')
     cout.place(y=60)
+
+
 textworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
 textworkgroup.place(width=500, height=400, x=15, y=15)
 
 buttonworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
 buttonworkgroup.place(width=200, height=120, x=525, y=15)
 
-btn_one = Button(buttonworkgroup, command=ButtonOne,text="Выберите \n директорию \n поиска")
+btn_one = Button(buttonworkgroup, command=ButtonOne, text="Выберите \n директорию \n поиска")
 btn_one.place(width=100, height=45)
 
 root.mainloop()
