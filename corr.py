@@ -1,10 +1,12 @@
 from tkinter import *
 from tkinter import filedialog
 import main
+from main import *
 import os
 
 
 dirpath = ""
+textpool = ""
 root = Tk()
 # Указываем фоновый цвет
 root['bg'] = '#fafafa'
@@ -17,6 +19,7 @@ root.resizable(width=False, height=False)
 
 def ButtonOne():
     global dirpath
+    global textpool
     dirpath = filedialog.askdirectory(
         parent=textworkgroup,
         title='Выберите директорию поиска'
@@ -24,25 +27,26 @@ def ButtonOne():
     label = Label(textworkgroup, text="Выбранная директория: " + dirpath, anchor='w')
     label.place(width=500, height=25)
 
+    phraseforword = Label(textworkgroup, text="Введите слово для поиска", anchor='w', )
+    phraseforword.place(width=500, height=20, y=25)
 
+    textpool = Entry(textworkgroup)
+    textpool.place(width=500, height=50, y=45)
+
+    btn_two = Button(buttonworkgroup, text="Начать поиск")
+    btn_two.place(width=100, height=25, y=50)
+    ButtonTwo(textpool)
+def ButtonTwo(textpool):
+    main.interface(dirpath,textpool)
+    cout = Label(textworkgroup)
+    cout.place(y=60)
 textworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
 textworkgroup.place(width=500, height=400, x=15, y=15)
 
 buttonworkgroup = Frame(root, highlightbackground="black", highlightthickness=1, background='')
-buttonworkgroup.place(width=100, height=60, x=525, y=15)
+buttonworkgroup.place(width=200, height=120, x=525, y=15)
 
-# phrasefordirectory = Label(textworkgroup, text="Выберите директорию поиска", anchor='w')
-# phrasefordirectory.place(width=500, height=20)
-
-btn_one = Button(buttonworkgroup, command=ButtonOne,text="Выберите директорию поиска")
-btn_one.place(width=100, height=25)
-
-btn_two = Button(buttonworkgroup)
-btn_two.place(width=100, height=25, y=30)
-
-# textpool = Text(textworkgroup)
-# textpool.place(width=500, height=25)
-
-
+btn_one = Button(buttonworkgroup, command=ButtonOne,text="Выберите \n директорию \n поиска")
+btn_one.place(width=100, height=45)
 
 root.mainloop()
