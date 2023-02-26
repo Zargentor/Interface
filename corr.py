@@ -15,9 +15,9 @@ root.geometry('800x600')
 root.resizable(width=False, height=False)
 
 couttext = ""
-dirpath=""
+global dirpath
 def ButtonOne():
-    global dirpath
+
     dirpath = filedialog.askdirectory(
         parent=textworkgroup,
         title='Выберите директорию поиска'
@@ -33,10 +33,9 @@ def ButtonOne():
 
     btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo)
     btn_two.place(width=100, height=25, y=50)
-    return dirpath
+    ButtonTwo(dirpath)
 
-def ButtonTwo():
-    global dirpath
+def ButtonTwo(dirpath):
     phraseforword = Label(textworkgroup, text="Введите слово для поиска", anchor='w', )
     phraseforword.place(width=500, height=20, y=25)
     v = StringVar(root, value='')
