@@ -1,10 +1,8 @@
 from tkinter import *
 from tkinter import filedialog
 import billing
-from billing import *
 import os
-from billing import interface
-from billing import perebor_corr
+from billing import interface,perebor_corr
 
 dirpath = ""
 textpool = ""
@@ -28,23 +26,22 @@ def ButtonOne():
     )
     label = Label(textworkgroup, text="Выбранная директория: " + dirpath, anchor='w')
     label.place(width=500, height=25)
+    ButtonTwo(dirpath)
 
+
+
+def ButtonTwo(dirpath):
+    global couttext
     phraseforword = Label(textworkgroup, text="Введите слово для поиска", anchor='w', )
     phraseforword.place(width=500, height=20, y=25)
 
-    textpool = Text(textworkgroup)
+    textpool = Entry(textworkgroup)
     textpool.place(width=500, height=50, y=45)
-
-    btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo(textpool,dirpath))
-    btn_two.place(width=100, height=25, y=50)
-    ButtonTwo(textpool, dirpath)
-
-def ButtonTwo(textpool, dirpath) -> str:
-    global couttext
-    textpool = str(textpool)#вот сюда переходит не строка, исправить
-    if textpool != None:
-        interface(textpool,dirpath)
-    couttext = perebor_corr
+    s = textpool.get()
+    if s != None:
+        interface(s,dirpath)
+    cout = Label(textworkgroup, text=perebor_corr(), anchor='w')
+    cout.place(height=500, width=500, y=95)
 
 
 
@@ -57,6 +54,8 @@ buttonworkgroup.place(width=200, height=120, x=525, y=15)
 btn_one = Button(buttonworkgroup, command=ButtonOne, text="Выберите \n директорию \n поиска")
 btn_one.place(width=100, height=45)
 
-cout = Label(textworkgroup, text=couttext, anchor='w')
-cout.place(width=500,y=85)
+btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo)
+btn_two.place(width=100, height=25, y=50)
+
+
 root.mainloop()
