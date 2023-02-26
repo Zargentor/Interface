@@ -6,7 +6,7 @@ import re
 dict = []  # массив для записи отдельных предложений
 directory = ""
 word = ""
-
+count = ""
 
 def corr():
     global dirr
@@ -34,19 +34,20 @@ def perebor_corr():
         wordcountbeforeword = ""
         wordcountafterword = ""
         trash = ""
+        count = []
         for i in sentences:
             if word in i:
                 readydictionary = (filename[0], ":", i)
                 wordcountbeforeword = ("Количество символов до слова", word, "=", word_text.index(word))
                 wordcountafterword = ("Количество символов после слова", word, "=", len_all - word_text.index(word) - len_curr)
                 trash = (readydictionary , "\n", wordcountbeforeword, "\n", wordcountafterword)
-                return trash
-
-def interface(s, dirpath):
+                count.append(trash)
+    return count
+def interface(v, dirpath):
     global word
     global directory
     shere = ""
-    shere = s
+    shere = v
     word = str(shere)
     directory = dirpath
     corr()
