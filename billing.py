@@ -40,7 +40,7 @@ def perebor_corr():
                 wordcountbeforeword = ("Количество символов до слова", word, "=", word_text.index(word))
                 wordcountafterword = ("Количество символов после слова", word, "=", len_all - word_text.index(word) - len_curr)
                 trash = (readydictionary , "\n", wordcountbeforeword, "\n", wordcountafterword)
-    return trash
+                return trash
 
 def interface(s, dirpath):
     global word

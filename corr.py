@@ -4,8 +4,6 @@ import billing
 import os
 from billing import interface,perebor_corr
 
-dirpath = ""
-textpool = ""
 root = Tk()
 # Указываем фоновый цвет
 root['bg'] = '#fafafa'
@@ -17,31 +15,41 @@ root.geometry('800x600')
 root.resizable(width=False, height=False)
 
 couttext = ""
+dirpath=""
 def ButtonOne():
     global dirpath
-    global textpool
     dirpath = filedialog.askdirectory(
         parent=textworkgroup,
         title='Выберите директорию поиска'
     )
     label = Label(textworkgroup, text="Выбранная директория: " + dirpath, anchor='w')
     label.place(width=500, height=25)
-    ButtonTwo(dirpath)
 
-
-
-def ButtonTwo(dirpath):
-    global couttext
     phraseforword = Label(textworkgroup, text="Введите слово для поиска", anchor='w', )
     phraseforword.place(width=500, height=20, y=25)
 
     textpool = Entry(textworkgroup)
     textpool.place(width=500, height=50, y=45)
+
+    btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo)
+    btn_two.place(width=100, height=25, y=50)
+    return dirpath
+
+def ButtonTwo():
+    global dirpath
+    phraseforword = Label(textworkgroup, text="Введите слово для поиска", anchor='w', )
+    phraseforword.place(width=500, height=20, y=25)
+    v = StringVar(root, value='')
+    textpool = Entry(textworkgroup, textvariable=v)
+    textpool.place(width=500, height=50, y=45)
     s = textpool.get()
+    print(s)
     if s != None:
         interface(s,dirpath)
-    cout = Label(textworkgroup, text=perebor_corr(), anchor='w')
+    cout = Text(textworkgroup,)
     cout.place(height=500, width=500, y=95)
+    scrollright = Scrollbar(cout, command=cout.yview)
+    scrollright.pack(side=LEFT, fill=Y)
 
 
 
@@ -54,8 +62,7 @@ buttonworkgroup.place(width=200, height=120, x=525, y=15)
 btn_one = Button(buttonworkgroup, command=ButtonOne, text="Выберите \n директорию \n поиска")
 btn_one.place(width=100, height=45)
 
-btn_two = Button(buttonworkgroup, text="Начать поиск", command=ButtonTwo)
-btn_two.place(width=100, height=25, y=50)
+
 
 
 root.mainloop()
