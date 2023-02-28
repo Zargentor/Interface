@@ -21,7 +21,7 @@ def perebor_corr():
     global dict
     global word
     global trash
-    dictionary = {}
+    dictionary = []
     for files_txt in dict:
         word_text = open(files_txt, 'r', encoding='utf-8',
                          errors='ignore').read().lower()  # считывает весь текст из всех текстовых документов
@@ -39,16 +39,17 @@ def perebor_corr():
                 readydictionary = (filename[0], ":", i)
                 wordcountbeforeword = ("Количество символов до слова", word, "=", word_text.index(word))
                 wordcountafterword = ("Количество символов после слова", word, "=", len_all - word_text.index(word) - len_curr)
-                trash = (readydictionary, "\n", wordcountbeforeword, "\n", wordcountafterword)
-                print(trash)
-                return trash
+                trash = (readydictionary + '\n', wordcountbeforeword, '\n', wordcountafterword)
+                dictionary.append(trash)
+                print(dictionary)
+    return dictionary
 
 def interface(v, dirpath):
     global word
     global directory
     shere = ""
     shere = v
-    word = str(shere)
+    word = str(shere).lower()
     directory = dirpath
     corr()
     perebor_corr()
