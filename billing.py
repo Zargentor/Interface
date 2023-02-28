@@ -7,7 +7,6 @@ dict = []  # массив для записи отдельных предлож�
 directory = ""
 word = ""
 count = ""
-
 def corr():
     global dirr
     global dict
@@ -21,6 +20,7 @@ def corr():
 def perebor_corr():
     global dict
     global word
+    global trash
     dictionary = {}
     for files_txt in dict:
         word_text = open(files_txt, 'r', encoding='utf-8',
@@ -34,15 +34,15 @@ def perebor_corr():
         wordcountbeforeword = ""
         wordcountafterword = ""
         trash = ""
-        count = []
         for i in sentences:
             if word in i:
                 readydictionary = (filename[0], ":", i)
                 wordcountbeforeword = ("Количество символов до слова", word, "=", word_text.index(word))
                 wordcountafterword = ("Количество символов после слова", word, "=", len_all - word_text.index(word) - len_curr)
-                trash = (readydictionary , "\n", wordcountbeforeword, "\n", wordcountafterword)
-                count.append(trash)
-    return count
+                trash = (readydictionary, "\n", wordcountbeforeword, "\n", wordcountafterword)
+                print(trash)
+                return trash
+
 def interface(v, dirpath):
     global word
     global directory

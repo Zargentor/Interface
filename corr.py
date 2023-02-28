@@ -15,7 +15,7 @@ root.geometry('1200x1000')
 root.resizable(width=False, height=False)
 
 couttext = ""
-global dirpath
+
 def ButtonOne():
     dirpath = filedialog.askdirectory(
         parent=textworkgroup,
@@ -30,7 +30,7 @@ def ButtonOne():
     textpool = Entry(textworkgroup)
     textpool.place(width=500, height=50, y=45)
 
-    btn_two = Button(buttonworkgroup, text="Начать поиск", command=lambda:ButtonTwo(dirpath,s))
+    btn_two = Button(buttonworkgroup, text="Начать поиск", command=lambda:ButtonTwo(dirpath, s))
     btn_two.place(width=100, height=25, y=50)
     phraseforword = Label(textworkgroup, text="Введите слово для поиска", anchor='w', )
     phraseforword.place(width=500, height=20, y=25)
@@ -43,9 +43,8 @@ def ButtonTwo(dirpath, s):
     if v != None:
         interface(v, dirpath)
     cout = Text(textworkgroup, font=12)
-    cout.insert(0.2,billing.count)
+    cout.insert(1.0,billing.perebor_corr())
     cout.place(height=500, width=500, y=95)
-    bb=cout.get()
     scrollright = Scrollbar(cout, command=cout.yview)
     scrollright.pack(side=LEFT, fill=Y)
 
