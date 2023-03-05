@@ -4,6 +4,8 @@ import billing
 from billing import interface,perebor_corr
 from functools import partial
 from tkinter import ttk
+import time
+
 
 root = Tk()
 # Указываем фоновый цвет
@@ -40,19 +42,13 @@ def ButtonTwo(dirpath, s):
     if v != None:
         interface(v, dirpath)
     text = perebor_corr()
-    # cout = Text(textworkgroup, font=12)
-    # for i in range(len(text)):
-    #     cout.insert(1.0, str(text[i]['wordcountafterword']) + " ")
-    #     cout.insert(1.0, str(text[i]['wordcountbeforeword']) + " ")
-    #     cout.insert(1.0, text[i]['sentence'] + " ")
-    #     cout.insert(1.0, text[i]['word'] + " ")
-    #     cout.insert(1.0, text[i]['filename'] + " ")
-    #     cout.insert(1.0, "\n")
-    # cout.place(height=690, width=690, y=95)
-    # scrollright = Scrollbar(cout, command=cout.yview())
-    # scrollright.place()
+    Table(text)
+
+
+def Table(text):
+    valueVar = IntVar()
     Tree = ttk.Treeview(textworkgroup, columns=columns, show="headings")
-    Tree.place(width=700, height=500,y=95)
+    Tree.place(width=700, height=500, y=95)
     Tree.heading("filename", text="Имя файла", anchor=W)
     Tree.heading("word", text="Искомое слово", anchor=W)
     Tree.heading("sentence", text="Предложение", anchor=W)
@@ -63,13 +59,19 @@ def ButtonTwo(dirpath, s):
     Tree.column("#3", stretch=YES, width=200)
     Tree.column("#4", stretch=YES, width=30)
     Tree.column("#5", stretch=YES, width=30)
+    Progressbar = ttk.Progressbar(textworkgroup,orient="horizontal", mode="determinate",maximum=100)
+    Progressbar.place(width=700, y=595)
     for i in range(len(text)):
-        Tree.insert("",END,values=text[i])
+        Tree.insert("", END, values=text[i])
+        Progressbar.configure(value=i)
+        time.sleep(0.05)
+        Progressbar.update()
+
 
 
 
 textworkgroup = Frame(root,  background='')
-textworkgroup.place(width=690, height=700, x=15, y=15)
+textworkgroup.place(width=690, height=800, x=15, y=15)
 
 buttonworkgroup = Frame(root, background='')
 buttonworkgroup.place(width=200, height=120, x=720, y=15)
